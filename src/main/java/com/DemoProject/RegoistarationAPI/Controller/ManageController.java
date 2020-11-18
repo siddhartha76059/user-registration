@@ -3,10 +3,7 @@ package com.DemoProject.RegoistarationAPI.Controller;
 import com.DemoProject.RegoistarationAPI.Model.User;
 import com.DemoProject.RegoistarationAPI.Repositry.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,10 @@ public class ManageController {
     public String save(@RequestBody User user){
         userRepo.save(user);
         return "Saved";
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{id}")
+    public void delete(@PathVariable("id") int id) {
+        userRepo.deleteById(id);
     }
 }
